@@ -1,0 +1,11 @@
+FROM alpine
+EXPOSE 53/udp
+#RUN echo '@edge http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories
+RUN apk add --no-cache \
+	bind \
+	bind-tools \
+	&& chown -R root:root /var
+RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main nodejs nodejs-npm
+ADD ["./layout.tar.gz", "/"]
+RUN chown -R root:root /var/bind
+ENTRYPOINT ["/root/start.sh"]
