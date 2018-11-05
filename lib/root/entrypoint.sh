@@ -10,7 +10,7 @@ function start {
 	ln -s /root/help.sh /usr/sbin/help
 	/usr/sbin/named
 	sleep 1
-	/root/dnsctl-zone-add.js lab 172.16.10.12
+	/root/dnsctl-zone-add.js lab 172.16.0.0
 	sleep 1
 	/root/dnsctl-load.js
 	tail -f /var/log/named.log

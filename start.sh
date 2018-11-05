@@ -1,17 +1,13 @@
 #!/bin/bash
-
-#docker run -d -P --net host --cap-add=SYS_TIME --cap-add=SYS_NICE apnex/alpine-ntp
-#docker run -d -P --net host apnex/alpine-etcd
-
 echo "-- shutting down running containers --"
-docker rm -f -v $(docker ps -q)
+docker rm -f -v $(docker ps -q) 2>/dev/null
 echo "-- removing untagged containers --"
-docker rmi -f $(docker images -q --filter dangling=true)
+docker rmi -f $(docker images -q --filter dangling=true) 2>/dev/null
 echo "-- removing orphaned volumes --"
-docker rm -v $(docker ps -a -q -f status=exited)
+docker rm -f $(docker ps -qa -f status=exited) 2>/dev/null
 
 echo "-- starting constellation --"
-docker run -d -P --net host --name dns --restart=unless-stopped apnex/control-dns
-#docker run -d -P --net host --name pxe apnex/control-pxe
-#docker run -d -p 5081:80 --name node-esx apnex/node-esx
-#docker run -d -p 5082:80 --name node-centos apnex/node-centos
+docker run -d -P --net host --restart=unless-stopped \
+	-v ${PWD}/zones.json:/root/zones.json \
+	-v ${PWD}/entrypoint.sh:/root/start.sh \
+	--name dns apnex/control-dns

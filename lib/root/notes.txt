@@ -1,0 +1,6 @@
+- move to new xcell/xtable.js
+- build sdk interfaces for rndc, bind, dnsctl
+- move to native ES6 promises (remove async)
+- build CLI and autocomplete
+- fix entrypoint to dynamically install zone from zones.json
+

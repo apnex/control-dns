@@ -1,0 +1,23 @@
+[{
+       "name": "rhino.local",
+       "subnet": "192.168.10.0",
+       "nodes": [
+               {
+                       "name": "ryan-vca01",
+                       "address": "192.168.10.12"
+               },
+               {
+                       "name": "ryan-esx01",
+                       "address": "192.168.10.10"
+               },
+               {
+                       "name": "ryan-nsxc01",
+                       "address": "192.168.10.14"
+               },
+               {
+                       "name": "ryan-nsxm01",
+                       "address": "192.168.10.13"
+               }
+
+       ]
+}]
