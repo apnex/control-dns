@@ -1,18 +1,7 @@
 #!/bin/sh
 
 function start {
-	ln -s /root/dnsctl-rec-add.js /usr/sbin/rec-add
-	ln -s /root/dnsctl-rec-del.js /usr/sbin/rec-del
-	ln -s /root/dnsctl-zone-add.js /usr/sbin/zone-add
-	ln -s /root/dnsctl-zone-del.js /usr/sbin/zone-del
-	ln -s /root/dnsctl-list.js /usr/sbin/list
-	ln -s /root/dnsctl-load.js /usr/sbin/load
-	ln -s /root/help.sh /usr/sbin/help
 	/usr/sbin/named
-	sleep 1
-	/root/dnsctl-zone-add.js lab 172.16.0.0
-	sleep 1
-	/root/dnsctl-load.js
 	tail -f /var/log/named.log
 }
 

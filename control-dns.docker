@@ -3,7 +3,10 @@ EXPOSE 53/udp
 RUN echo '@edge http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories
 RUN apk add --no-cache \
 	nodejs \
-	nodejs-npm
+	nodejs-npm \
+	&& npm install npm@latest bind-cli --global \
+	&& npm cache clean --force \
+	&& npm remove npm --global
 RUN apk add --no-cache \
 	bind \
 	bind-tools \
